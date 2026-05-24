@@ -66,6 +66,12 @@ jobs:
           channel: stable
           cache: true
 
+      - name: Disable Swift Package Manager for Apple builds
+        if: matrix.name == 'macos_ios'
+        run: |
+          flutter config --no-enable-swift-package-manager
+        shell: bash
+
       - name: Install Java
         if: matrix.name == 'android'
         uses: actions/setup-java@v5
